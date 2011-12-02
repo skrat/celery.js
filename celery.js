@@ -11,7 +11,7 @@ var conf, conn, sock;
 
 
 function brokerReady() {
-    var exchange = conn.exchange(conf.celery.exchange, {
+    var defaultExchange = conn.exchange(conf.celery.exchange, {
         type: conf.celery.type,
         durable: true,
         autoDelete: false
@@ -22,7 +22,17 @@ function brokerReady() {
             resultQueue(conn, message, function(result) {
                 client.emit(conf.celery.resultevent, result);
             });
-            exchange.publish(conf.celery.route, pack(message), {
+            var ex = defaultExchange;
+            var route = conf.celery.route;
+            if (message.exchange) {
+                ex = conn.exchange(message.exchange, {
+                    type: conf.celery.type,
+                    durable: true,
+                    autoDelete: false
+                });
+                route = message.exchange;
+            }
+            ex.publish(route, pack(message), {
                 contentType: 'application/x-msgpack',
                 contentEncoding: 'binary'
             });
