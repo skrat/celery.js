@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "amqp":      "0.1.0",
-        "socket.io": "0.8.4",
+        "socket.io": "0.8.7",
         "msgpack2":  "0.1.4",
         "optimist":  "0.2.6",
         "ini":       "1.0.1"
