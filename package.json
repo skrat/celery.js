@@ -1,17 +1,17 @@
 {
     "name": "celerygw",
     "description": "node.js gateway to connect browsers and celery workers",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Dusan Maliarik",
     "engines": {
         "node": ">= 0.4.0"
     },
     "dependencies": {
-        "amqp":      "0.1.0",
-        "socket.io": "0.8.7",
-        "msgpack2":  "0.1.4",
-        "optimist":  "0.2.6",
-        "ini":       "1.0.1"
+        "amqp"      : "0.1.0",
+        "socket.io" : "0.8.7",
+        "msgpack"   : "0.2.3",
+        "optimist"  : "0.2.6",
+        "ini"       : "1.0.1"
     },
     "bin": {
         "celerygw": "bin/celerygw.js"

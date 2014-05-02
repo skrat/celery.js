@@ -4,7 +4,7 @@ var fs = require('fs'),
     amqp = require('amqp'),
     http = require('http'),
     io = require('socket.io'),
-    msgpack = require('msgpack2'),
+    msgpack = require('msgpack'),
     sys = require(process.binding('natives').util ? 'util' : 'sys');
 
 var conf, conn, sock;
