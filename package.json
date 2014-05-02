@@ -1,5 +1,5 @@
 {
-    "name": "celery.js",
+    "name": "celerygw",
     "description": "node.js gateway to connect browsers and celery workers",
     "version": "0.0.1",
     "author": "Dusan Maliarik",
