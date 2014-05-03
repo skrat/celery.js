@@ -1,0 +1,15 @@
+[Unit]
+Description=Socket.io gateway to celery
+After=docker.service
+Requires=docker.service
+After=etcd.service
+Requires=etcd.service
+After=rabbitmq.service
+Requires=rabbitmq.service
+
+[Service]
+ExecStartPre=/bin/sh -c "/usr/bin/docker rm -f celeryio > /dev/null ; true"
+ExecStart=/usr/bin/docker run --name celeryio --env-file /etc/environment --link rabbitmq:mq -p 8080:8080 skrat/celeryio
+ExecStop=/usr/bin/docker stop celeryio
+ExecStopPost=/usr/bin/docker rm -f celeryio
+
