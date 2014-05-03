@@ -9,7 +9,15 @@ Requires=rabbitmq.service
 
 [Service]
 ExecStartPre=/bin/sh -c "/usr/bin/docker rm -f celeryio > /dev/null ; true"
-ExecStart=/usr/bin/docker run --name celeryio --env-file /etc/environment --link rabbitmq:mq -p 8080:8080 skrat/celeryio
+ExecStart=/usr/bin/docker run \
+ --name celeryio \
+ --env-file /etc/environment \
+ --env "VHOST=test" \
+ --env "USER=test" \
+ --env "RESTART=10000" \
+ --link rabbitmq:mq \
+ --publish 8080:8080 \
+ skrat/celeryio
 ExecStop=/usr/bin/docker stop celeryio
 ExecStopPost=/usr/bin/docker rm -f celeryio
 

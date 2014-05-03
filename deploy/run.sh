@@ -1,12 +1,12 @@
 #!/bin/sh
 
-/configure.py -u geri -v geri > /celerygw.ini
+/configure.py -v $VHOST -u $USER > /celerygw.ini
 
 RESTART_INTERVAL=$(((2*24*60*60)))
 
 (
     while true ; do
-        sleep $RESTART_INTERVAL
+        sleep $RESTART
         killall node
     done
 ) &
